@@ -3,12 +3,10 @@ import Exception from './src/exception/exception';
 
 class App {
     private app: express.Application;
-    private host: string;
     private port: number;
 
-    constructor(controllers: any[], host: string, port: number) {
+    constructor(controllers: any[], port: number) {
         this.app = express();
-        this.host = host;
         this.port = port;
 
         this.initializeMiddlewares();
@@ -33,8 +31,8 @@ class App {
     }
 
     public listen() {
-        this.app.listen(this.port, this.host, () => {
-            console.log(`Server running in ${this.host} on PORT: ${this.port}`);
+        this.app.listen(this.port, () => {
+            console.log(`Server running on PORT: ${this.port}`);
         });
     }
 }

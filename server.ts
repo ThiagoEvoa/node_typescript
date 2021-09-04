@@ -11,7 +11,6 @@ const app = new App(
     [
         new Controller(),
     ],
-    host,
     port,
 );
 
