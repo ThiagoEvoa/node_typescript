@@ -1,7 +1,9 @@
-import MessageDTO from "../model/dto/message_dto";
+import Entity from "../model/entity/entity";
 
 interface IRepository {
-    retrieveMessage(): MessageDTO;
+    retrieveMessage(): Entity;
+
+    updateMessage(message: Entity): Entity
 }
 
 export default IRepository;

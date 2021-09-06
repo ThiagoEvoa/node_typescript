@@ -1,14 +1,20 @@
 import IRepository from '../repository/irepository';
-import MessageDTO from '../model/dto/message_dto';
 import DBHelper from './db_helper';
+import Entity from '../model/entity/entity';
 
 class Repository extends DBHelper implements IRepository {
     constructor() {
         super();
     }
 
-    retrieveMessage(): MessageDTO {
-        return this.db.get('data').value() as MessageDTO;
+    retrieveMessage(): Entity {
+        return this.db.read().value() as Entity;
+    }
+
+    updateMessage(entity: Entity): Entity {
+        console.log(entity.message);
+        this.db.read().set('message', entity.message).write();
+        return this.retrieveMessage();
     }
 }
 

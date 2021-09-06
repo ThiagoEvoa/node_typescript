@@ -1,8 +1,10 @@
 import express from 'express';
-import MessageDTO from '../model/dto/message_dto'
+import Entity from '../model/entity/entity';
 
 interface IBusiness {
-    retrieveMessage(request: express.Request): MessageDTO;
+    retrieveMessage(request: express.Request): Entity;
+
+    updateMessage(request: express.Request): Entity
 }
 
 export default IBusiness;

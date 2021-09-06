@@ -1,7 +1,9 @@
 import express from 'express';
 import Business from '../business/business';
 import IBusiness from '../business/ibusiness';
-import MessageException from '../exception/message_exception';
+import GetMessageException from '../exception/get_entity_exception';
+import UpdateMessageException from '../exception/update_entity_exception';
+import MessageDTO from '../model/dto/dto';
 
 class Controller {
     private path = '/api';
@@ -15,13 +17,25 @@ class Controller {
 
     private initializeRoutes() {
         this.router.get(this.path, this.getMessage);
+        this.router.put(this.path, this.updateMessage);
     }
 
     getMessage = (request: express.Request, response: express.Response, next: express.NextFunction) => {
         try {
-            response.send(this.business.retrieveMessage(request));
+            let responseMessage = this.business.retrieveMessage(request) as MessageDTO;
+            response.send(responseMessage);
         } catch {
-            next(new MessageException());
+            next(new GetMessageException());
+        }
+    }
+
+    updateMessage = (request: express.Request, response: express.Response, next: express.NextFunction) => {
+        try {
+            let responseMessage = this.business.updateMessage(request);
+            response.send(responseMessage);
+        } catch (ex) {
+            console.log(ex);
+            next(new UpdateMessageException());
         }
     }
 }

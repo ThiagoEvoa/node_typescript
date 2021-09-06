@@ -1,9 +1,9 @@
 import Exception from "./exception";
 
-class MessageException extends Exception {
+class GetMessageException extends Exception {
     constructor() {
         super('Error while retrieve message.', 500);
     }
 }
 
-export default MessageException;
+export default GetMessageException;

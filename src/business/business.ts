@@ -1,6 +1,6 @@
 import express from 'express';
 import IBusiness from '../business/ibusiness';
-import MessageDTO from '../model/dto/message_dto';
+import Entity from '../model/entity/entity';
 import IRepository from '../repository/irepository';
 import Repository from '../repository/repository';
 
@@ -11,8 +11,12 @@ class Business implements IBusiness {
         this.repository = new Repository();
     }
 
-    retrieveMessage(request: express.Request): MessageDTO {
+    retrieveMessage(request: express.Request): Entity {
         return this.repository.retrieveMessage();
+    }
+
+    updateMessage(request: express.Request): Entity {
+        return this.repository.updateMessage(request.body as Entity);
     }
 }
 
