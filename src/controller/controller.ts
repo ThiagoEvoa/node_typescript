@@ -4,6 +4,7 @@ import IBusiness from '../business/ibusiness';
 import GetMessageException from '../exception/get_entity_exception';
 import UpdateMessageException from '../exception/update_entity_exception';
 import MessageDTO from '../model/dto/dto';
+import { interceptor } from '../util/interceptor';
 
 class Controller {
     private path = '/api';
@@ -16,7 +17,7 @@ class Controller {
     }
 
     private initializeRoutes() {
-        this.router.get(this.path, this.getMessage);
+        this.router.get(this.path, interceptor, this.getMessage);
         this.router.put(this.path, this.updateMessage);
     }
 
